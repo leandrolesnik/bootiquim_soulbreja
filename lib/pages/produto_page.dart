@@ -24,14 +24,16 @@ class _ProdutoPageState extends State<ProdutoPage> {
             Text("cerveja"),
             Column(
               children: [
-                Container(width: 220, height: 120, color: Colors.purple.shade700
-                    /*  child: Image.asset(
+                Container(
+                  width: 220,
+                  height: 120,
+                  color: Colors.purple.shade700,
+                  child: Image.asset(
                     'assets/images/',
                     width: 220,
                     height: 120,
-                  ), */
-
-                    ),
+                  ),
+                ),
                 ListView(
                   children: [
                     Container(
