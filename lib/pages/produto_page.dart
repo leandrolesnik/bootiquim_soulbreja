@@ -12,6 +12,9 @@ class _ProdutoPageState extends State<ProdutoPage> {
       appBar: AppBar(
         title: Text("Bootquim Soulbreja"),
         centerTitle: true,
+        actions: [
+          Container(width: 220, height: 120, color: Colors.purple.shade700)
+        ],
       ),
       drawer: Drawer(),
       body: SingleChildScrollView(
