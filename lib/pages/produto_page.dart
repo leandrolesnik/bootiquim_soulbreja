@@ -16,47 +16,59 @@ class _ProdutoPageState extends State<ProdutoPage> {
           Text("usuario"),
         ],
       ),
-      drawer: Drawer(),
-      body: SingleChildScrollView(
-        child: Row(
-          children: [
-            Text("Nome Categoria"),
-            Text("cerveja"),
-            Column(
-              children: [
-                Container(
-                  width: 220,
-                  height: 120,
-                  color: Colors.purple.shade700,
-                  child: Image.asset(
-                    'assets/images/',
+      //drawer: Drawer(),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(28.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("Nome Categoria"),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    child: Text('carrinho'),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
                     width: 220,
                     height: 120,
-                  ),
-                ),
-                ListView(
-                  children: [
-                    Container(
-                      child: Text("Nome Produto"),
+                    color: Colors.purple.shade700,
+                    child: Image.asset(
+                      'assets/images/',
                     ),
-                    Container(
-                      child: Text("Nome Produto"),
-                    ),
-                    Container(
-                      child: Text("Nome Produto"),
-                    )
-                  ],
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.ac_unit_outlined,
-                    color: Colors.white,
                   ),
-                ),
-              ],
-            ),
-          ],
+                  /*  ListView(
+                    children: [
+                      Container(
+                        child: Text("Nome Produto"),
+                      ),
+                      Container(
+                        child: Text("Nome Produto"),
+                      ),
+                      Container(
+                        child: Text("Nome Produto"),
+                      )
+                    ],
+                  ), */
+                  Container(
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.ac_unit_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'produto_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,8 +41,13 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {}),
             ListTile(
                 leading: Icon(Icons.print),
-                title: Text("Tela 3"),
-                onTap: () {}),
+                title: Text("Produto"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => ProdutoPage()));
+                }),
             ListTile(
                 leading: Icon(Icons.list),
                 title: Text("Tela 4..."),
