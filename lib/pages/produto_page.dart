@@ -12,6 +12,9 @@ class _ProdutoPageState extends State<ProdutoPage> {
       appBar: AppBar(
         title: Text("Bootquim Soulbreja"),
         centerTitle: true,
+        actions: [
+          Text("usuario"),
+        ],
       ),
       drawer: Drawer(),
       body: SingleChildScrollView(
