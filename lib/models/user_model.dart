@@ -1,23 +1,23 @@
 class UserModel {
   final String nome;
-  final String? id;
+  final String? key;
 
   UserModel({
     required this.nome,
-    this.id,
+    this.key,
   });
 
   static UserModel fromMap(Map<String, dynamic> map) {
     return UserModel(
       nome: map['nome'],
-      id: map['id'],
+      key: map['key'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'nome': nome,
-      'id': id,
+      'key': key,
     };
   }
 }

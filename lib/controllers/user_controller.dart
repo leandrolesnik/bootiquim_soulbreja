@@ -50,7 +50,7 @@ class UserController extends ChangeNotifier {
 
     final uid = credentials.user?.uid;
     final data = payload.toMap();
-    data['id'] = uid;
+    data['key'] = uid;
 
     final doc = _db.collection('usuarios').doc(uid);
     await doc.set(data);
