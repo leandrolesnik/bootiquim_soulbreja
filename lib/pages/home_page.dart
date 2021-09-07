@@ -1,3 +1,5 @@
+import 'package:bootquim_soulbreja/pages/login_page.dart';
+
 import 'produto_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(" Bootquim SoulBreja"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.login),
+            tooltip: 'Show Snackbar',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+          ),
+        ],
       ),
       //************************************************/
       //********************** DRAWER *****************/
