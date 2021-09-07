@@ -8,6 +8,7 @@ import 'cerveja_page.dart';
 import 'vinho_page.dart';
 
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
+import 'package:bootquim_soulbreja/widgets/lista_produtos.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ class ListaPromocao extends StatefulWidget {
 }
 
 class _ListaPromocaoState extends State<ListaPromocao> {
+  var imagemBranco =
+      "https://mamonimaternity.com/wp-content/uploads/2021/06/dummy-products-300x300.png";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +43,8 @@ class _ListaPromocaoState extends State<ListaPromocao> {
 
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
-            .collection('Produtos')
-            .where('Promoção', isEqualTo: true)
+            .collection('produtos')
+            .where('categoria', isEqualTo: "whisky")
             .get(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -59,41 +62,7 @@ class _ListaPromocaoState extends State<ListaPromocao> {
             itemCount: produtos.length,
             itemBuilder: (context, index) {
               final item = produtos[index];
-              return Card(
-                color: Colors.amber,
-                margin: EdgeInsets.all(5),
-                borderOnForeground: false,
-                child: ListTile(
-                  leading: item.imagem != null
-                      ? Image.memory(
-                          item.imagem!,
-                          fit: BoxFit.contain,
-                          width: 125,
-                          height: 200,
-                        )
-                      : Container(
-                          width: 125,
-                          height: 200,
-                          // height: double.maxFinite,
-                          color: Colors.blue,
-                        ),
-                  title: Text(
-                    item.item,
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  subtitle: Text(
-                    item.descricao,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  trailing: Text(
-                    "R\$${item.preco}",
-                    style: TextStyle(fontSize: 18, color: Colors.red.shade700),
-                  ),
-                  horizontalTitleGap: 10,
-                  tileColor: Colors.blueGrey.shade100,
-                  minVerticalPadding: 10,
-                ),
-              );
+              return ListaProdutos(context, item);
             },
           );
         },
