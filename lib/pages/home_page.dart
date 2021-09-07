@@ -1,6 +1,9 @@
+import 'package:bootquim_soulbreja/pages/cerveja_page.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
+import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'package:bootquim_soulbreja/pages/whisky_page.dart';
 import 'lista_promocao.dart';
-import 'produto_page.dart';
+import 'vinho_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,17 +53,31 @@ class _HomePageState extends State<HomePage> {
                 }),
             ListTile(
                 leading: Icon(Icons.military_tech),
-                title: Text("Categorias"),
+                title: Text("Promoções"),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ListaPromocao()));
                 }),
             ListTile(
                 leading: Icon(Icons.print),
-                title: Text("Produto"),
+                title: Text("Cerveja"),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ProdutoPage()));
+                      MaterialPageRoute(builder: (context) => CervejaPage()));
+                }),
+                ListTile(
+                leading: Icon(Icons.print),
+                title: Text("Vinho"),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => VinhoPage()));
+                }),
+                ListTile(
+                leading: Icon(Icons.print),
+                title: Text("Whisky"),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => WhiskyPage()));
                 }),
             ListTile(
                 leading: Icon(Icons.list),

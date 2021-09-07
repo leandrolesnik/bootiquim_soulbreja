@@ -3,12 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:provider/provider.dart';
 
-class ProdutoPage extends StatefulWidget {
+class WhiskyPage extends StatefulWidget {
   @override
-  _ProdutoPageState createState() => _ProdutoPageState();
+  _WhiskyPageState createState() => _WhiskyPageState();
 }
 
-class _ProdutoPageState extends State<ProdutoPage> {
+class _WhiskyPageState extends State<WhiskyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,10 @@ class _ProdutoPageState extends State<ProdutoPage> {
         title: Text('Produtos'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance.collection('Produtos').snapshots(),
+        stream: FirebaseFirestore.instance
+        .collection('Produtos')
+        .where('Categoria', isEqualTo: 'Whisky')
+        .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
