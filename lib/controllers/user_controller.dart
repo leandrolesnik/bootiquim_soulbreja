@@ -15,16 +15,18 @@ class UserController extends ChangeNotifier {
   User? get user => _auth.currentUser;
 
   UserController() {
-    _auth.authStateChanges().listen((user) async {
-      if (user != null) {
-        authState = AuthState.signed;
-        final data = await _db.collection('usuarios').doc(user.uid).get();
-        model = UserModel.fromMap(data.data()!);
-      } else {
-        authState = AuthState.unsigned;
-      }
-      notifyListeners();
-    });
+    _auth.authStateChanges().listen(
+      (user) async {
+        if (user != null) {
+          authState = AuthState.signed;
+          final data = await _db.collection('usuarios').doc(user.uid).get();
+          model = UserModel.fromMap(data.data()!);
+        } else {
+          authState = AuthState.unsigned;
+        }
+        notifyListeners();
+      },
+    );
   }
 
   Future<void> login(String email, String senha) async {

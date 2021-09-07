@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +16,7 @@ class _CadastroPageState extends State<CadastroPage> {
   String nome = "";
   String email = "";
   String senha = "";
-  String foto = "";
+  Uint8List? file;
 
   late final userController = Provider.of<UserController>(
     context,
@@ -61,11 +64,24 @@ class _CadastroPageState extends State<CadastroPage> {
                 obscureText: true,
                 onChanged: (texto) => senha = texto,
               ),
-              // TextFormField(
-              //   decoration: InputDecoration(labelText: 'Foto'),
-              //   obscureText: true,
-              //   onChanged: (texto) => senha = texto,
-              // ),
+              ElevatedButton(
+                onPressed: () async {
+                  final result =
+                      await FilePicker.platform.pickFiles(type: FileType.image);
+                  if (result != null) {
+                    setState(() {
+                      final bytes = result.files.first.bytes;
+                      file = bytes;
+                    });
+                  }
+                },
+                child: Row(
+                  children: [
+                    Icon(file != null ? Icons.check : Icons.upload),
+                    Text("Adicionar foto"),
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
