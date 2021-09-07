@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.login),
-            tooltip: 'Show Snackbar',
+            tooltip: 'Entrar',
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => LoginPage()));
