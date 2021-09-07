@@ -1,7 +1,15 @@
 import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
+
+import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'package:bootquim_soulbreja/pages/whisky_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'cerveja_page.dart';
+import 'vinho_page.dart';
+
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 
 class ListaPromocao extends StatefulWidget {
@@ -27,7 +35,9 @@ class _ListaPromocaoState extends State<ListaPromocao> {
           ),
         ],
       ),
+
       drawer: DrawerMenu(),
+
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
             .collection('Produtos')
