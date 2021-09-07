@@ -2,7 +2,9 @@ import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:bootquim_soulbreja/pages/home_page.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
 import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'package:bootquim_soulbreja/pages/whisky_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'cerveja_page.dart';
 import 'vinho_page.dart';
 import 'package:flutter/material.dart';
 
@@ -50,23 +52,35 @@ class _ListaPromocaoState extends State<ListaPromocao> {
                 }),
             ListTile(
                 leading: Icon(Icons.military_tech),
-                title: Text("Categorias"),
+                title: Text("Promoções"),
                 onTap: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ListaPromocao()));
                 }),
             ListTile(
                 leading: Icon(Icons.print),
-                title: Text("Produto"),
+                title: Text("Cerveja"),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => VinhoPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CervejaPage()));
+                }),
+                ListTile(
+                leading: Icon(Icons.print),
+                title: Text("Vinho"),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => VinhoPage()));
+                }),
+                ListTile(
+                leading: Icon(Icons.print),
+                title: Text("Whisky"),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => WhiskyPage()));
                 }),
             ListTile(
                 leading: Icon(Icons.list),
-                title: Text("Tela 4..."),
+                title: Text("xxxxxx"),
                 onTap: () {}),
           ],
         ),
