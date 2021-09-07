@@ -5,17 +5,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'produto_page.dart';
 import 'package:flutter/material.dart';
 
-class ListaCervejas extends StatefulWidget {
+class ListaPromocao extends StatefulWidget {
   @override
-  _ListaCervejasState createState() => _ListaCervejasState();
+  _ListaPromocaoState createState() => _ListaPromocaoState();
 }
 
-class _ListaCervejasState extends State<ListaCervejas> {
+class _ListaPromocaoState extends State<ListaPromocao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bootquim SoulBreja"),
+        title: Text("Bootquim"),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.login),
@@ -51,7 +52,7 @@ class _ListaCervejasState extends State<ListaCervejas> {
                 title: Text("Categorias"),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListaCervejas()));
+                      MaterialPageRoute(builder: (context) => ListaPromocao()));
                 }),
             ListTile(
                 leading: Icon(Icons.print),
@@ -72,7 +73,7 @@ class _ListaCervejasState extends State<ListaCervejas> {
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
             .collection('Produtos')
-            .where('Categoria', isEqualTo: 'Cerveja')
+            .where('Promoção', isEqualTo: true)
             .get(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -94,17 +95,28 @@ class _ListaCervejasState extends State<ListaCervejas> {
                 leading: item.imagem != null
                     ? Image.memory(
                         item.imagem!,
-                        fit: BoxFit.cover,
-                        width: 172,
+                        fit: BoxFit.contain,
+                        width: 200,
+                        height: 200,
                       )
                     : Container(
-                        child: Icon(Icons.location_on),
-                        width: 72,
-                        height: double.maxFinite,
+                        width: 200,
+                        height: 200,
+                        // height: double.maxFinite,
                         color: Colors.blue,
                       ),
-                title: Text(item.item),
-                subtitle: Text(item.preco),
+                title: Text(
+                  item.item,
+                  style: TextStyle(fontSize: 21),
+                ),
+                subtitle: Text(
+                  item.descricao,
+                  style: TextStyle(fontSize: 16),
+                ),
+                trailing: Text(
+                  "R\$ ${item.preco}",
+                  style: TextStyle(fontSize: 21),
+                ),
               );
             },
           );
