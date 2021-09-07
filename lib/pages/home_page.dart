@@ -1,5 +1,5 @@
 import 'package:bootquim_soulbreja/pages/login_page.dart';
-
+import 'lista_promocao.dart';
 import 'produto_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(" Bootquim SoulBreja"),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.login),
@@ -49,16 +50,17 @@ class _HomePageState extends State<HomePage> {
                 }),
             ListTile(
                 leading: Icon(Icons.military_tech),
-                title: Text(" Tela 2"),
-                onTap: () {}),
+                title: Text("Categorias"),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListaPromocao()));
+                }),
             ListTile(
                 leading: Icon(Icons.print),
                 title: Text("Produto"),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => ProdutoPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProdutoPage()));
                 }),
             ListTile(
                 leading: Icon(Icons.list),

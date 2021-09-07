@@ -31,6 +31,7 @@ class _CadastroPageState extends State<CadastroPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Cadastrar"),
+        centerTitle: true,
       ),
       body: Form(
         child: Padding(
