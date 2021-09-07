@@ -1,10 +1,7 @@
 import 'package:bootquim_soulbreja/models/produto_model.dart';
-import 'package:bootquim_soulbreja/pages/home_page.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
-import 'package:bootquim_soulbreja/pages/vinho_page.dart';
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'vinho_page.dart';
 import 'package:flutter/material.dart';
 
 class ListaPromocao extends StatefulWidget {
