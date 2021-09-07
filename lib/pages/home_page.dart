@@ -1,5 +1,8 @@
+import 'package:provider/provider.dart';
+
 import 'produto_page.dart';
 import 'package:flutter/material.dart';
+import '../controllers/user_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,6 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late final userController = Provider.of<UserController>(
+    context,
+    listen: false,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,12 +27,13 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Bootquim SoulBrejas"),
-              accountEmail: Text("soulbreja@gmail.com"),
+              accountName: Text(userController.model.nome),
+              accountEmail: Text(userController.user!.email!),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage(
                   '../../assets/images/logo.png',
                 ),
+                // backgroundImage: MemoryImage(userController.model.imagem!),
               ),
             ),
             ListTile(
