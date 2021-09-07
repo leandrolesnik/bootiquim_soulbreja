@@ -2,6 +2,7 @@ import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:bootquim_soulbreja/pages/home_page.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
 import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'vinho_page.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _ListaPromocaoState extends State<ListaPromocao> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bootquim"),
+        title: Text("Promoções"),
         centerTitle: true,
         actions: [
           IconButton(
@@ -29,48 +30,7 @@ class _ListaPromocaoState extends State<ListaPromocao> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: Text("Bootquim SoulBrejas"),
-              accountEmail: Text("soulbreja@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage(
-                  '../../assets/images/logo.png',
-                ),
-              ),
-            ),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(" - Home"),
-                onTap: () {
-                  Navigator.push(context,
-                      new MaterialPageRoute(builder: (context) => HomePage()));
-                }),
-            ListTile(
-                leading: Icon(Icons.military_tech),
-                title: Text("Categorias"),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListaPromocao()));
-                }),
-            ListTile(
-                leading: Icon(Icons.print),
-                title: Text("Produto"),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => VinhoPage()));
-                }),
-            ListTile(
-                leading: Icon(Icons.list),
-                title: Text("Tela 4..."),
-                onTap: () {}),
-          ],
-        ),
-      ),
+      drawer: DrawerMenu(),
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
             .collection('Produtos')
@@ -92,31 +52,39 @@ class _ListaPromocaoState extends State<ListaPromocao> {
             itemCount: produtos.length,
             itemBuilder: (context, index) {
               final item = produtos[index];
-              return ListTile(
-                leading: item.imagem != null
-                    ? Image.memory(
-                        item.imagem!,
-                        fit: BoxFit.contain,
-                        width: 200,
-                        height: 200,
-                      )
-                    : Container(
-                        width: 200,
-                        height: 200,
-                        // height: double.maxFinite,
-                        color: Colors.blue,
-                      ),
-                title: Text(
-                  item.item,
-                  style: TextStyle(fontSize: 21),
-                ),
-                subtitle: Text(
-                  item.descricao,
-                  style: TextStyle(fontSize: 16),
-                ),
-                trailing: Text(
-                  "R\$ ${item.preco}",
-                  style: TextStyle(fontSize: 21),
+              return Card(
+                color: Colors.amber,
+                margin: EdgeInsets.all(5),
+                borderOnForeground: false,
+                child: ListTile(
+                  leading: item.imagem != null
+                      ? Image.memory(
+                          item.imagem!,
+                          fit: BoxFit.contain,
+                          width: 125,
+                          height: 200,
+                        )
+                      : Container(
+                          width: 125,
+                          height: 200,
+                          // height: double.maxFinite,
+                          color: Colors.blue,
+                        ),
+                  title: Text(
+                    item.item,
+                    style: TextStyle(fontSize: 24),
+                  ),
+                  subtitle: Text(
+                    item.descricao,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  trailing: Text(
+                    "R\$${item.preco}",
+                    style: TextStyle(fontSize: 18, color: Colors.red.shade700),
+                  ),
+                  horizontalTitleGap: 10,
+                  tileColor: Colors.blueGrey.shade100,
+                  minVerticalPadding: 10,
                 ),
               );
             },
