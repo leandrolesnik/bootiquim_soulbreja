@@ -12,6 +12,7 @@ class ProdutoModel {
   final bool promocao;
   final String categoria;
   final Uint8List? imagem;
+  final String volume;
 
   ProdutoModel({
     this.key,
@@ -22,6 +23,7 @@ class ProdutoModel {
     required this.preco,
     required this.promocao,
     required this.categoria,
+    required this.volume,
     this.imagem,
   });
 
@@ -30,27 +32,29 @@ class ProdutoModel {
         key: key,
         ownerKey: map['ownerKey'],
         item: map['item'],
-        descricao: map['descrição'],
+        descricao: map['descricao'],
         quantidade: map['quantidade'],
-        preco: map['Preço'],
-        promocao: map['Promoção'],
-        categoria: map['Categoria'],
+        preco: map['preco'],
+        promocao: map['promocao'],
+        categoria: map['categoria'],
+        volume: map['volume'],
         imagem: map['imagem']?.bytes,
       );
 
   Map<String, dynamic> toMap() => {
         'ownerKey': ownerKey,
         'item': item,
-        'descrição': descricao,
+        'descricao': descricao,
         'quantidade': quantidade,
-        'Preço': preco,
-        'Promoção': promocao,
-        'Categoria': categoria,
+        'preco': preco,
+        'promocao': promocao,
+        'categoria': categoria,
+        'volume': volume,
         'imagem': imagem != null ? Blob(imagem!) : null,
       };
 
   @override
   String toString() {
-    return 'ProdutoModel(key: $key, ownerKey: $ownerKey, item: $item, Descricao: $descricao, Quantidade: $quantidade, Preco: $preco, Promoção: $promocao, Categoria: $categoria)';
+    return 'ProdutoModel(key: $key, ownerKey: $ownerKey, item: $item, descricao: $descricao, quantidade: $quantidade, preco: $preco, promocao: $promocao, categoria: $categoria, volume $volume)';
   }
 }

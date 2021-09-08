@@ -38,13 +38,11 @@ class _ListaPromocaoState extends State<ListaPromocao> {
           ),
         ],
       ),
-
       drawer: DrawerMenu(),
-
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
             .collection('produtos')
-            .where('categoria', isEqualTo: "whisky")
+            .where('promocao', isEqualTo: true)
             .get(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -62,7 +60,9 @@ class _ListaPromocaoState extends State<ListaPromocao> {
             itemCount: produtos.length,
             itemBuilder: (context, index) {
               final item = produtos[index];
-              return ListaProdutos(context, item);
+              return SingleChildScrollView(
+                child: ListaProdutos(context, item),
+              );
             },
           );
         },

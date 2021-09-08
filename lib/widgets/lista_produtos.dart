@@ -8,27 +8,30 @@ Expanded ListaProdutos(BuildContext context, ProdutoModel item) {
       children: [
         SizedBox(height: 40),
         Container(
-          height: MediaQuery.of(context).size.height / 4,
-          margin: EdgeInsets.all(5),
+          height: MediaQuery.of(context).size.height / 3.5,
+          margin: EdgeInsets.only(bottom: 10),
           decoration: BoxDecoration(
-            image: DecorationImage(image: MemoryImage(item.imagem!)),
+            image: DecorationImage(
+                image: MemoryImage(item.imagem!), fit: BoxFit.fitHeight),
           ),
         ),
         Container(
           color: Colors.amber,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: 250,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         item.item,
-                        style: TextStyle(fontSize: 32),
+                        style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
                       Text(
                         item.item,
@@ -37,9 +40,22 @@ Expanded ListaProdutos(BuildContext context, ProdutoModel item) {
                     ],
                   ),
                 ),
-                Text(
-                  "R\$${item.preco}",
-                  style: TextStyle(fontSize: 28, color: Colors.red.shade700),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.amberAccent,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "R\$${item.preco}",
+                      style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.red.shade700,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
