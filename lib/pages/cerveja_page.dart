@@ -22,8 +22,8 @@ class _CervejaPageState extends State<CervejaPage> {
       drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
-            .collection('Produtos')
-            .where('Categoria', isEqualTo: 'Cerveja')
+            .collection('produtos')
+            .where('categoria', isEqualTo: 'Cerveja')
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

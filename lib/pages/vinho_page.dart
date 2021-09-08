@@ -21,8 +21,8 @@ class _VinhoPageState extends State<VinhoPage> {
       drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
-            .collection('Produtos')
-            .where('Categoria', isEqualTo: 'Vinho')
+            .collection('produtos')
+            .where('categoria', isEqualTo: 'Vinho')
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

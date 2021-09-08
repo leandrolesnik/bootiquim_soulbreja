@@ -19,16 +19,13 @@ class _WhiskyPageState extends State<WhiskyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Whiskies'),
-        centerTitle: true
-      ),
+      appBar: AppBar(title: Text('Whiskies'), centerTitle: true),
       drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
-        .collection('Produtos')
-        .where('Categoria', isEqualTo: 'Whisky')
-        .snapshots(),
+            .collection('produtos')
+            .where('categoria', isEqualTo: 'Whisky')
+            .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
@@ -85,17 +82,16 @@ class _WhiskyPageState extends State<WhiskyPage> {
                         ),
                   onTap: () {
                     Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProdutoPage(
-                        produto: produto,
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProdutoPage(
+                          produto: produto,
+                        ),
                       ),
-                    ),
-                  );
+                    );
                   },
                 );
               },
-              
             ),
           );
         },
