@@ -50,12 +50,14 @@ class _ProdutoPageState extends State<ProdutoPage> {
                         Text('Quantidade: $qtdCont',style: TextStyle(fontSize: 21)),
                         Text('R\$$precoCont', style: TextStyle(fontSize: 21)),
                       ]),
-                  Text('Descrição:  $descricaoCont',style: TextStyle(fontSize: 19)),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 30),
+                    child: Text('Descrição:  $descricaoCont',style: TextStyle(fontSize: 19))),
                   InkWell(
                     child: ElevatedButton(
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
-                        width: 78, 
+                        width: 75, 
                         height: 20,
                         child: Text("Comprar"),
                       ),
