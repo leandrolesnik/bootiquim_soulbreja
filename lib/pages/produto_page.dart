@@ -24,36 +24,33 @@ class _ProdutoPageState extends State<ProdutoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Editar diário"),
+        title: Text("Produto"),
         
       
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Column(
-            children: [
-              Text(itemCont),
-              Text(descricaoCont),
-              Text(precoCont),
-              ListTile(
-                leading: file != null
-                    ? Image.memory(
-                       file!,
-                        fit: BoxFit.cover,
-                        width: 72,
-                      )
-                    : Container(
-                        child: Icon(Icons.location_on),
-                        width: 72,
-                        height: double.maxFinite,
-                        color: Colors.blue,
-                      ),),
-              
-              
-              
-             
-            ],
+          child: Expanded(
+            child: Container(
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Text("Categoria", style: TextStyle(fontSize: 25),),
+                    Image(image: MemoryImage(file!), height: 200),
+
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.spaceEvenly,
+                    children:[ 
+                      Text(itemCont, style: TextStyle(fontSize: 22),),
+                      Text('R\$$precoCont', style: TextStyle(fontSize: 22),),
+                    ]
+                    ),
+                  Text('Descrição: $descricaoCont', style: TextStyle(fontSize: 19),),
+                 
+                ],
+              ),
+            ),
           ),
         ),
       ),
