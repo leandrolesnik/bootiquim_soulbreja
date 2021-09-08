@@ -34,8 +34,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 Container(
-                  width: medida.width - 60,
-                  height: medida.width - 60,
+                  width: medida.width - 100,
+                  height: medida.width - 100,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/logoTransp.png"),
@@ -43,15 +43,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'E-mail'),
                   onChanged: (texto) => email = texto,
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Senha'),
@@ -102,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 40,
                 ),
                 InkWell(
                   onTap: () {

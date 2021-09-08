@@ -32,109 +32,110 @@ class _CadastroPageState extends State<CadastroPage> {
         title: Text("Cadastrar"),
         centerTitle: true,
       ),
-      body: Form(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                width: medida.width,
-                height: medida.height - medida.width,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/logoTransp.png"),
-                    fit: BoxFit.contain,
+      body: SingleChildScrollView(
+        child: Form(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                  width: medida.width - 100,
+                  height: medida.width - 100,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/logoTransp.png"),
+                        fit: BoxFit.contain),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              if (isLoading) CircularProgressIndicator(),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Nome'),
-                onChanged: (texto) => nome = texto,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'E-mail'),
-                onChanged: (texto) => email = texto,
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Senha'),
-                obscureText: true,
-                onChanged: (texto) => senha = texto,
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  final result =
-                      await FilePicker.platform.pickFiles(type: FileType.image);
-                  if (result != null) {
-                    setState(() {
-                      final bytes = result.files.first.bytes;
-                      file = bytes;
-                    });
-                  }
-                },
-                child: Row(
-                  children: [
-                    Icon(file != null ? Icons.check : Icons.upload),
-                    Text("Adicionar foto"),
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                child: Container(
-                  width: medida.width,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Theme.of(context).primaryColor),
-                  child: Center(
-                    child: Text(
-                      "Cadastrar",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
+                if (isLoading) CircularProgressIndicator(),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Nome'),
+                  onChanged: (texto) => nome = texto,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'E-mail'),
+                  onChanged: (texto) => email = texto,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Senha'),
+                  obscureText: true,
+                  onChanged: (texto) => senha = texto,
+                ),
+                // ElevatedButton(
+                //   onPressed: () async {
+                //     final result = await FilePicker.platform
+                //         .pickFiles(type: FileType.image);
+                //     if (result != null) {
+                //       setState(() {
+                //         final bytes = result.files.first.bytes;
+                //         file = bytes;
+                //       });
+                //     }
+                //   },
+                //   child: Row(
+                //     children: [
+                //       Icon(file != null ? Icons.check : Icons.upload),
+                //       Text("Adicionar foto"),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  child: Container(
+                    width: medida.width,
+                    height: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Theme.of(context).primaryColor),
+                    child: Center(
+                      child: Text(
+                        "Cadastrar",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                      ),
                     ),
                   ),
-                ),
-                onTap: () async {
-                  try {
-                    final user = UserModel(nome: nome);
-                    setState(() {
-                      isLoading = true;
-                    });
+                  onTap: () async {
+                    try {
+                      final user = UserModel(nome: nome);
+                      setState(() {
+                        isLoading = true;
+                      });
 
-                    await userController.signup(email, senha, user);
+                      await userController.signup(email, senha, user);
 
-                    Navigator.pop(context);
-                  } on FirebaseAuthException catch (e) {
-                    setState(() {
-                      isLoading = false;
-                    });
-                    var msg = "";
+                      Navigator.pop(context);
+                    } on FirebaseAuthException catch (e) {
+                      setState(() {
+                        isLoading = false;
+                      });
+                      var msg = "";
 
-                    if (e.code == "weak-password") {
-                      msg = "Senha fraca!";
-                    } else if (e.code == "email-already-in-use") {
-                      msg = "E-mail já cadastrado";
-                    } else {
-                      msg = "Ocorreu um erro";
+                      if (e.code == "weak-password") {
+                        msg = "Senha fraca!";
+                      } else if (e.code == "email-already-in-use") {
+                        msg = "E-mail já cadastrado";
+                      } else {
+                        msg = "Ocorreu um erro";
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(msg),
+                        ),
+                      );
                     }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(msg),
-                      ),
-                    );
-                  }
-                },
-              )
-            ],
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
