@@ -1,27 +1,51 @@
+import 'package:bootquim_soulbreja/controllers/user_controller.dart';
+import 'package:bootquim_soulbreja/models/user_model.dart';
 import 'package:bootquim_soulbreja/pages/cerveja_page.dart';
 import 'package:bootquim_soulbreja/pages/home_page.dart';
 import 'package:bootquim_soulbreja/pages/lista_promocao.dart';
 import 'package:bootquim_soulbreja/pages/vinho_page.dart';
 import 'package:bootquim_soulbreja/pages/whisky_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DrawerMenu extends StatelessWidget {
-  const DrawerMenu({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    late final userController = Provider.of<UserController>(
+      context,
+      listen: false,
+    );
+
     return Drawer(
       child: ListView(
         children: [
-          UserAccountsDrawerHeader(
-            accountName: Text("Bootquim SoulBrejas"),
-            accountEmail: Text("soulbreja@gmail.com"),
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage(
-                '../../assets/images/logo.png',
-              ),
-            ),
+          FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+            future: FirebaseFirestore.instance
+                .collection('usuarios')
+                .doc(userController.user!.uid)
+                .get(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return DrawerHeader(
+                    child: Center(child: CircularProgressIndicator()));
+              }
+              final user = UserModel.fromMap(snapshot.data!.data()!);
+              return UserAccountsDrawerHeader(
+                accountName: Text(user.nome),
+                accountEmail: Text(userController.user!.email!),
+                // currentAccountPicture: CircleAvatar(
+                //     foregroundImage: MemoryImage(userController.model.imagem!)),
+              );
+            },
           ),
+
+          // UserAccountsDrawerHeader(
+          //   accountName: Text("Bootquim SoulBrejas"),
+          //   accountEmail: Text("soulbreja@gmail.com"),
+          // currentAccountPicture: CircleAvatar(
+          //   foregroundImage: MemoryImage(userController.model.imagem!),
+
           ListTile(
               leading: Icon(Icons.person),
               title: Text(" - Home"),

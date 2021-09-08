@@ -1,11 +1,11 @@
 import 'package:bootquim_soulbreja/pages/produto_page.dart';
 import 'package:bootquim_soulbreja/pages/vinho_page.dart';
 import 'package:bootquim_soulbreja/pages/whisky_page.dart';
+import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:provider/provider.dart';
-
 import 'home_page.dart';
 import 'lista_promocao.dart';
 
@@ -18,69 +18,13 @@ class _CervejaPageState extends State<CervejaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Cervejas'),
-        centerTitle: true
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: Text("Bootquim SoulBrejas"),
-              accountEmail: Text("soulbreja@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage(
-                  '../../assets/images/logo.png',
-                ),
-              ),
-            ),
-            ListTile(
-                leading: Icon(Icons.person),
-                title: Text(" - Home"),
-                onTap: () {
-                  Navigator.push(context,
-                      new MaterialPageRoute(builder: (context) => HomePage()));
-                }),
-            ListTile(
-                leading: Icon(Icons.military_tech),
-                title: Text("Promoções"),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ListaPromocao()));
-                }),
-            ListTile(
-                leading: Icon(Icons.print),
-                title: Text("Cerveja"),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CervejaPage()));
-                }),
-                ListTile(
-                leading: Icon(Icons.print),
-                title: Text("Vinho"),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => VinhoPage()));
-                }),
-                ListTile(
-                leading: Icon(Icons.print),
-                title: Text("Whisky"),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => WhiskyPage()));
-                }),
-            ListTile(
-                leading: Icon(Icons.list),
-                title: Text("xxxxxx"),
-                onTap: () {}),
-          ],
-        ),
-      ),
+      appBar: AppBar(title: Text('Cervejas'), centerTitle: true),
+      drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
-        .collection('Produtos')
-        .where('Categoria', isEqualTo: 'Cerveja')
-        .snapshots(),
+            .collection('Produtos')
+            .where('Categoria', isEqualTo: 'Cerveja')
+            .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
@@ -135,14 +79,16 @@ class _CervejaPageState extends State<CervejaPage> {
                           height: double.maxFinite,
                           color: Colors.blue,
                         ),
-                  onTap: () {Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProdutoPage(
-                        produto: produto,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProdutoPage(
+                          produto: produto,
+                        ),
                       ),
-                    ),
-                  );},
+                    );
+                  },
                 );
               },
             ),

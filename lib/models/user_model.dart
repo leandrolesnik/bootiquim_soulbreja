@@ -20,11 +20,9 @@ class UserModel {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'nome': nome,
-      'key': key,
-      'imagem': imagem != null ? Blob(imagem!) : null,
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        'nome': nome,
+        'key': key,
+        'imagem': imagem != null ? Blob(imagem!) : null,
+      };
 }

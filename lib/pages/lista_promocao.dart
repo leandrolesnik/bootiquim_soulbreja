@@ -1,8 +1,5 @@
 import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:bootquim_soulbreja/pages/login_page.dart';
-
-import 'package:bootquim_soulbreja/pages/vinho_page.dart';
-import 'package:bootquim_soulbreja/pages/whisky_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'cerveja_page.dart';
 import 'vinho_page.dart';
