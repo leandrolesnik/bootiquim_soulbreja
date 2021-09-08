@@ -41,7 +41,6 @@ class DrawerMenu extends StatelessWidget {
               );
             },
           ),
-
           // UserAccountsDrawerHeader(
           //   accountName: Text("Bootquim SoulBrejas"),
           //   accountEmail: Text("soulbreja@gmail.com"),
