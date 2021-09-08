@@ -49,7 +49,7 @@ class DrawerMenu extends StatelessWidget {
 
           ListTile(
               leading: Icon(Icons.person),
-              title: Text(" - Home"),
+              title: Text(" Home"),
               onTap: () {
                 Navigator.push(context,
                     new MaterialPageRoute(builder: (context) => HomePage()));
