@@ -81,87 +81,88 @@ class _HomePageState extends State<HomePage> {
 
       body: ListView(
         children: [
-          Column(
-            children: [
-              //*******************Imagem topo - CARROSEL */
-              Container(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => ListaPromocao()));
-                  },
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      height: 200,
-                      autoPlay: true,
-                    ),
-                    items: imagesList
-                        .map(
-                          (item) => Container(
-                            child: Center(
-                              child: Image.network(
-                                item,
-                                fit: BoxFit.cover,
-                                height: 200,
-                              ),
-                            ),
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 40, 0, 30),
+            child: Column(
+              children: [
+                //*******************Imagem topo - CARROSEL */
+                Container(
+                  child: InkWell(
+                    onTap: () {Navigator.push(context,
+                      new MaterialPageRoute(builder: (context) => ListaPromocao()));},
+                    child: CarouselSlider(
+                          options: CarouselOptions(
+                            height: 200,
+                            autoPlay: true,
                           ),
-                        )
-                        .toList(),
+                          items: imagesList
+                              .map(
+                                (item) => Container(
+                    child: Center(
+                      child: Image.network(
+                        item,
+                        fit: BoxFit.cover,
+                        height: 200,
+                      ),
+                    ),
+                                ),
+                              )
+                              .toList(),
+                        ),
                   ),
                 ),
-              ),
-              //********************FINAL DO CARROSEL */
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Categorias"),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(5),
-                        child: InkWell(
-                          child: Image.asset(
-                            '../../assets/images/heineken.jpg',
-                            width: 80,
-                          ),
-                          // onTap: () => launch(    <<< Não esquecer o pacote do launcher
-                          //   'CAMINHO DO ON TAP',
-                          // ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(5),
-                        child: InkWell(
-                          child: Image.asset(
-                            '../../assets/images/heineken.jpg',
-                            width: 80,
-                          ),
-                          // onTap: () => launch(    <<< Não esquecer o pacote do launcher
-                          //   'CAMINHO DO ON TAP',
-                          // ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(5),
-                        child: InkWell(
-                          child: Image.asset(
-                            '../../assets/images/heineken.jpg',
-                            width: 80,
-                          ),
-                          // onTap: () => launch(    <<< Não esquecer o pacote do launcher
-                          //   'CAMINHO DO ON TAP',
-                          // ),
-                        ),
-                      ),
-                    ],
+                //********************FINAL DO CARROSEL */
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 50, 0, 20),
+                      child: Text("Categorias")),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                  margin: EdgeInsets.all(5),
+                  child: InkWell(
+                    child: Image.asset(
+                      '../../assets/images/heineken.jpg',
+                      width: 80,
+                    ),
+                    // onTap: () => launch(    <<< Não esquecer o pacote do launcher
+                    //   'CAMINHO DO ON TAP',
+                    // ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: InkWell(
+                    child: Image.asset(
+                      '../../assets/images/heineken.jpg',
+                      width: 80,
+                    ),
+                    // onTap: () => launch(    <<< Não esquecer o pacote do launcher
+                    //   'CAMINHO DO ON TAP',
+                    // ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5),
+                  child: InkWell(
+                    child: Image.asset(
+                      '../../assets/images/heineken.jpg',
+                      width: 80,
+                    ),
+                    // onTap: () => launch(    <<< Não esquecer o pacote do launcher
+                    //   'CAMINHO DO ON TAP',
+                    // ),
+                  ),
+                ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
