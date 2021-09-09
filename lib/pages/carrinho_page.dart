@@ -1,5 +1,8 @@
+import 'package:bootquim_soulbreja/controllers/user_controller.dart';
 import 'package:bootquim_soulbreja/models/produto_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Cart extends StatefulWidget {
   final List<ProdutoModel> _cart;
@@ -12,11 +15,25 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   _CartState(this._cart);
-
   List<ProdutoModel> _cart;
+
+  late final userController = Provider.of<UserController>(
+    context,
+    listen: false,
+  );
 
   @override
   Widget build(BuildContext context) {
+    totalPreco(List<ProdutoModel> produtos) {
+      double soma = 0;
+      for (var item in produtos) {
+        soma += int.parse(item.preco);
+      }
+      print(soma);
+    }
+
+    String total = totalPreco(_cart).toString();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Finalizar'),
@@ -27,9 +44,17 @@ class _CartState extends State<Cart> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Total"),
+                  Text(total),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final historico = await FirebaseFirestore.instance
+                          .collection("usuarios")
+                          .doc("historico")
+                          .get;
+                      // .doc(userController.user!uid).get();
+
+                      // final data = user.data()!;
+                    },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
                       size: 36.0,
