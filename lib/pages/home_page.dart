@@ -1,6 +1,8 @@
 import 'package:bootquim_soulbreja/models/produto_model.dart';
 import 'package:bootquim_soulbreja/pages/cerveja_page.dart';
 import 'package:bootquim_soulbreja/pages/lista_promocao.dart';
+import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'package:bootquim_soulbreja/pages/whisky_page.dart';
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -149,9 +151,10 @@ class _HomePageState extends State<HomePage> {
                                 '../../assets/images/categorias/vinhos.jpg',
                                 width: 80,
                               ),
-                              // onTap: () => launch(    <<< Não esquecer o pacote do launcher
-                              //   'CAMINHO DO ON TAP',
-                              // ),
+                              onTap: () {
+                                Navigator.push(context,
+                                    new MaterialPageRoute(builder: (context) => VinhoPage()));
+                              },
                             ),
                           ),
                           Text("Vinhos")
@@ -164,9 +167,10 @@ class _HomePageState extends State<HomePage> {
                                 '../../assets/images/categorias/whiskys.jpg',
                                 width: 80,
                               ),
-                              // onTap: () => launch(    <<< Não esquecer o pacote do launcher
-                              //   'CAMINHO DO ON TAP',
-                              // ),
+                              onTap: () {
+                                Navigator.push(context,
+                                    new MaterialPageRoute(builder: (context) => WhiskyPage()));
+                              },
                             ),
                           ),
                           Text("whiskys")
