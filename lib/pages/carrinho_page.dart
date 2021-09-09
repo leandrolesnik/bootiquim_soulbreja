@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 class Cart extends StatefulWidget {
   final List<ProdutoModel> _cart;
-
   Cart(this._cart);
 
   @override
@@ -56,8 +55,12 @@ class _CartState extends State<Cart> {
                     onPressed: () async {
                       final produtosMap = _cart.map((e) => e.toMap()).toList();
                       final carrinho = {'compras': produtosMap};
+                      FirebaseFirestore.instance
+                          .collection("historico")
+                          .add(carrinho);
                       print(produtosMap);
                       print(carrinho);
+
                       FirebaseFirestore.instance
                           .collection("historico")
                           .add(carrinho);
