@@ -64,24 +64,24 @@ class _CadastroPageState extends State<CadastroPage> {
                   obscureText: true,
                   onChanged: (texto) => senha = texto,
                 ),
-                // ElevatedButton(
-                //   onPressed: () async {
-                //     final result = await FilePicker.platform
-                //         .pickFiles(type: FileType.image);
-                //     if (result != null) {
-                //       setState(() {
-                //         final bytes = result.files.first.bytes;
-                //         file = bytes;
-                //       });
-                //     }
-                //   },
-                //   child: Row(
-                //     children: [
-                //       Icon(file != null ? Icons.check : Icons.upload),
-                //       Text("Adicionar foto"),
-                //     ],
-                //   ),
-                // ),
+                ElevatedButton(
+                  onPressed: () async {
+                    final result = await FilePicker.platform
+                        .pickFiles(type: FileType.image);
+                    if (result != null) {
+                      setState(() {
+                        final bytes = result.files.first.bytes;
+                        file = bytes;
+                      });
+                    }
+                  },
+                  child: Row(
+                    children: [
+                      Icon(file != null ? Icons.check : Icons.upload),
+                      Text("Adicionar foto"),
+                    ],
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -105,7 +105,7 @@ class _CadastroPageState extends State<CadastroPage> {
                   ),
                   onTap: () async {
                     try {
-                      final user = UserModel(nome: nome);
+                      final user = UserModel(nome: nome, imagem: file);
                       setState(() {
                         isLoading = true;
                       });

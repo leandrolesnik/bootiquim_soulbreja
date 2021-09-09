@@ -46,7 +46,7 @@ class UserController extends ChangeNotifier {
     String email,
     String senha,
     UserModel payload,
-    // Uint8List imagem,
+    
   ) async {
     final credentials = await _auth.createUserWithEmailAndPassword(
       email: email,

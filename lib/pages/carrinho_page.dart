@@ -57,14 +57,11 @@ class _CartState extends State<Cart> {
                   ),
                   IconButton(
                     onPressed: () async {
-                      final historico = await FirebaseFirestore.instance
-                          .collection("usuarios")
-                          .doc("historico")
-                          .get();
-                      // .set(compras);
-                      // .doc(userController.user!uid).get();
 
-                      // final data = user.data()!;
+                      final produtosMap = _cart.map((e) => e.toMap()).toList();
+                      final historico = {'produtos': produtosMap};
+
+                     
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
