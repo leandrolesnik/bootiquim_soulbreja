@@ -33,6 +33,13 @@ class _CartState extends State<Cart> {
     }
 
     String total = totalPreco(_cart).toString();
+    Map compras = _cart.asMap();
+
+    // Map compras = {for (var item in _cart) '$item': '$item'};
+    print(compras);
+    print("_____");
+    print(_cart);
+    print("_____");
 
     return Scaffold(
       appBar: AppBar(
@@ -53,7 +60,8 @@ class _CartState extends State<Cart> {
                       final historico = await FirebaseFirestore.instance
                           .collection("usuarios")
                           .doc("historico")
-                          .get;
+                          .get();
+                      // .set(compras);
                       // .doc(userController.user!uid).get();
 
                       // final data = user.data()!;
