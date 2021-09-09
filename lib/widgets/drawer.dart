@@ -34,10 +34,10 @@ class DrawerMenu extends StatelessWidget {
               return UserAccountsDrawerHeader(
                 accountName: Text(user.nome),
                 accountEmail: Text(userController.user!.email!),
-                currentAccountPicture: CircleAvatar(
-                    foregroundImage: AssetImage("assets/images/heineken.jpg")),
                 // currentAccountPicture: CircleAvatar(
-                //     foregroundImage: MemoryImage(userController.model.imagem!)),
+                //     foregroundImage: AssetImage("assets/images/heineken.jpg")),
+                currentAccountPicture: CircleAvatar(
+                    foregroundImage: MemoryImage(userController.model.imagem!)),
               );
             },
           ),

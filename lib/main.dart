@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Bootquim Soulbreja',
         theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.deepPurple,
-          primaryColor: Colors.deepPurple,
+          primaryColor: Color(0xFFF2622E),
+          accentColor: Color(0xFFF2C6A0),
+          primarySwatch: Colors.deepOrange,
           textTheme:
               GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme),
         ),

@@ -27,16 +27,13 @@ class _CartState extends State<Cart> {
     totalPreco(List<ProdutoModel> produtos) {
       double soma = 0;
       for (var item in produtos) {
-        soma += int.parse(item.preco);
+        soma += double.parse(item.preco);
       }
       return (soma);
     }
 
     String total = totalPreco(_cart).toString();
-    Map compras = _cart.asMap();
 
-    // Map compras = {for (var item in _cart) '$item': '$item'};
-    print(compras);
     print("_____");
     print(_cart);
     print("_____");
@@ -57,11 +54,13 @@ class _CartState extends State<Cart> {
                   ),
                   IconButton(
                     onPressed: () async {
-
                       final produtosMap = _cart.map((e) => e.toMap()).toList();
-                      final historico = {'produtos': produtosMap};
-
-                     
+                      final carrinho = {'compras': produtosMap};
+                      print(produtosMap);
+                      print(carrinho);
+                      // FirebaseFirestore.instance
+                      //     .collection("historico")
+                      //     .add(carrinho);
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
