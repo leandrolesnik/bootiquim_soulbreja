@@ -3,6 +3,7 @@ import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bootquim_soulbreja/models/produto_model.dart';
+import 'carrinho_page.dart';
 
 class VinhoPage extends StatefulWidget {
   @override
@@ -10,10 +11,54 @@ class VinhoPage extends StatefulWidget {
 }
 
 class _VinhoPageState extends State<VinhoPage> {
+  List<ProdutoModel> _cartList = <ProdutoModel>[];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Vinhos'), centerTitle: true),
+      appBar: AppBar(
+        title: Text("Vinhos"),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+            child: GestureDetector(
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: <Widget>[
+                  Icon(
+                    Icons.shopping_cart,
+                    size: 36.0,
+                  ),
+                  if (_cartList.length > 0)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 2.0),
+                      child: CircleAvatar(
+                        radius: 8.0,
+                        backgroundColor: Color(0xffffffff),
+                        foregroundColor: Color(0xffD96A29),
+                        child: Text(
+                          _cartList.length.toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              onTap: () {
+                if (_cartList.isNotEmpty)
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => Cart(_cartList),
+                    ),
+                  );
+              },
+            ),
+          )
+        ],
+      ),
       drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
@@ -30,63 +75,86 @@ class _VinhoPageState extends State<VinhoPage> {
             return ProdutoModel.fromMap(data, map.id);
           }).toList();
 
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ListView.builder(
-              itemCount: produtos.length,
-              itemBuilder: (context, index) {
-                final produto = produtos[index];
-                return ListTile(
-                  title: Text(produto.item),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
+          return GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemCount: produtos.length,
+            itemBuilder: (context, index) {
+              final item = produtos[index];
+              return SingleChildScrollView(
+                child: Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProdutoPage(
+                            produto: item,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Icons.description),
-                                Text(produto.descricao),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.price_change),
-                                Text(produto.preco),
-                              ],
-                            ),
-                          ],
+                        Container(
+                          height: 125,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: MemoryImage(item.imagem!),
+                                fit: BoxFit.fitHeight),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      item.item,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xff733a19)),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          item.volume,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xffD96A29)),
+                                        ),
+                                        SizedBox(width: 50),
+                                        Text(
+                                          "R\$${item.preco}",
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Color(0xff733a19),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  leading: produto.imagem != null
-                      ? Image.memory(
-                          produto.imagem!,
-                          fit: BoxFit.cover,
-                          width: 140,
-                          height: 200,
-                        )
-                      : Container(
-                          child: Icon(Icons.location_on),
-                          width: 140,
-                          height: double.maxFinite,
-                          color: Colors.blue,
-                        ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProdutoPage(
-                          produto: produto,
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                ),
+              );
+            },
           );
         },
       ),

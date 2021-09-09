@@ -1,6 +1,8 @@
 // import 'package:bootquim_soulbreja/pages/home_page.dart';
-import 'package:bootquim_soulbreja/pages/home_page.dart';
-import 'package:bootquim_soulbreja/pages/login_page.dart';
+// import 'package:bootquim_soulbreja/pages/lista_promocao.dart';
+import 'package:bootquim_soulbreja/pages/vinho_page.dart';
+import 'pages/login_page.dart';
+import 'pages/produto_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
           textTheme:
               GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme),
         ),
-        home: LoginPage(),
+        home: VinhoPage(),
       ),
     );
   }
