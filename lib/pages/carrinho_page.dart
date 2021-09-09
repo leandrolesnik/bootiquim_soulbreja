@@ -29,7 +29,7 @@ class _CartState extends State<Cart> {
       for (var item in produtos) {
         soma += int.parse(item.preco);
       }
-      print(soma);
+      return (soma);
     }
 
     String total = totalPreco(_cart).toString();
@@ -47,13 +47,8 @@ class _CartState extends State<Cart> {
                   Text(total),
                   IconButton(
                     onPressed: () async {
-                      final historico = await FirebaseFirestore.instance
-                          .collection("usuarios")
-                          .doc("historico")
-                          .get;
-                      // .doc(userController.user!uid).get();
-
-                      // final data = user.data()!;
+                      final produtosMap = _cart.map((e) => e.toMap()).toList();
+                      final historico = {'produtos': produtosMap};
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
