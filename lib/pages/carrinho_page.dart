@@ -22,31 +22,43 @@ class _CartState extends State<Cart> {
         title: Text('Cart'),
       ),
       body: ListView.builder(
-          itemCount: _cart.length,
-          itemBuilder: (context, index) {
-            var item = _cart[index];
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-              child: Card(
-                elevation: 4.0,
-                child: ListTile(
-                  leading: Image.memory(item.imagem!),
-                  title: Text(item.item),
-                  trailing: GestureDetector(
-                      child: Icon(
-                        Icons.remove_circle,
-                        color: Colors.red,
-                      ),
-                      onTap: () {
-                        setState(() {
+        itemCount: _cart.length,
+        itemBuilder: (context, index) {
+          var item = _cart[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+            child: Card(
+              elevation: 4.0,
+              child: Column(
+                children: [
+                  Container(height: 200, child: Image.memory(item.imagem!)),
+                  Text(item.item),
+                  Text("R\$${item.preco}"),
+                  GestureDetector(
+                    child: Icon(
+                      Icons.remove_circle,
+                      color: Colors.red,
+                    ),
+                    onTap: () {
+                      setState(
+                        () {
                           _cart.remove(item);
-                        });
-                      }),
-                ),
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    child: Text("COMPRAR"),
+                  )
+                ],
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           textTheme:
               GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme),
         ),
-        home: HomePage(),
+        home: LoginPage(),
       ),
     );
   }

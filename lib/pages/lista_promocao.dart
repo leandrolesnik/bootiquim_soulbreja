@@ -17,8 +17,8 @@ class ListaPromocao extends StatefulWidget {
 
 class _ListaPromocaoState extends State<ListaPromocao> {
   List<ProdutoModel> _cartList = <ProdutoModel>[];
-  var imagemBranco =
-      "https://mamonimaternity.com/wp-content/uploads/2021/06/dummy-products-300x300.png";
+  // var imagemBranco =
+  //     "https://mamonimaternity.com/wp-content/uploads/2021/06/dummy-products-300x300.png";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,10 +154,7 @@ class _ListaPromocaoState extends State<ListaPromocao> {
                                       ),
                                       onTap: () {
                                         setState(() {
-                                          if (!_cartList.contains(item))
-                                            _cartList.add(item);
-                                          else
-                                            _cartList.remove(item);
+                                          _cartList.add(item);
                                         });
                                       },
                                     ),
