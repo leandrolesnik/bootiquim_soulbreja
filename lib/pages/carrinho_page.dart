@@ -48,7 +48,7 @@ class _CartState extends State<Cart> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Total R\$$total",
+                    "Total: R\$$total",
                     style: TextStyle(fontSize: 16),
                   ),
                   IconButton(
@@ -60,6 +60,17 @@ class _CartState extends State<Cart> {
                           .add(carrinho);
                       print(produtosMap);
                       print(carrinho);
+
+                      FirebaseFirestore.instance
+                          .collection("historico")
+                          .add(carrinho);
+
+                      // var usuario = FirebaseFirestore.instance
+                      //     .collection('historico')
+                      //     .where('ownerKey',
+                      //         isEqualTo: userController.model.key)
+                      //     // .doc();
+                      // print(usuario);
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,

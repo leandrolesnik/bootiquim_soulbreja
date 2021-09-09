@@ -15,6 +15,7 @@ class _WhiskyPageState extends State<WhiskyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         title: Text("Whiskies"),
         centerTitle: true,
@@ -59,6 +60,7 @@ class _WhiskyPageState extends State<WhiskyPage> {
           )
         ],
       ),
+
       drawer: DrawerMenu(),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
