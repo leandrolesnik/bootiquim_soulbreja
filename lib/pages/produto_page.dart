@@ -1,8 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:bootquim_soulbreja/models/produto_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class ProdutoPage extends StatefulWidget {

@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
         title: 'Bootquim Soulbreja',
         theme: ThemeData(
           primarySwatch: Colors.deepPurple,
+          accentColor: Colors.deepPurple,
+          primaryColor: Colors.deepPurple,
           textTheme:
               GoogleFonts.sourceSansProTextTheme(Theme.of(context).textTheme),
         ),

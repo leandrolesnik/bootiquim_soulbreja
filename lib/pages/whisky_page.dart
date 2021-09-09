@@ -1,14 +1,9 @@
 import 'package:bootquim_soulbreja/pages/produto_page.dart';
-import 'package:bootquim_soulbreja/pages/vinho_page.dart';
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bootquim_soulbreja/models/produto_model.dart';
-import 'package:provider/provider.dart';
 
-import 'cerveja_page.dart';
-import 'home_page.dart';
-import 'lista_promocao.dart';
 
 class WhiskyPage extends StatefulWidget {
   @override

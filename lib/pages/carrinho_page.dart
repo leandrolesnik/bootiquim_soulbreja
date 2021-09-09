@@ -33,6 +33,13 @@ class _CartState extends State<Cart> {
     }
 
     String total = totalPreco(_cart).toString();
+    Map compras = _cart.asMap();
+
+    // Map compras = {for (var item in _cart) '$item': '$item'};
+    print(compras);
+    print("_____");
+    print(_cart);
+    print("_____");
 
     return Scaffold(
       appBar: AppBar(
@@ -44,11 +51,17 @@ class _CartState extends State<Cart> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(total),
+                  Text(
+                    "Total R\$$total",
+                    style: TextStyle(fontSize: 16),
+                  ),
                   IconButton(
                     onPressed: () async {
+
                       final produtosMap = _cart.map((e) => e.toMap()).toList();
                       final historico = {'produtos': produtosMap};
+
+                     
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
