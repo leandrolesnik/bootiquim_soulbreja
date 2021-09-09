@@ -29,7 +29,7 @@ class _CartState extends State<Cart> {
       for (var item in produtos) {
         soma += int.parse(item.preco);
       }
-      print(soma);
+      return (soma);
     }
 
     String total = totalPreco(_cart).toString();
@@ -44,7 +44,10 @@ class _CartState extends State<Cart> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(total),
+                  Text(
+                    "Total R\$$total",
+                    style: TextStyle(fontSize: 16),
+                  ),
                   IconButton(
                     onPressed: () async {
                       final historico = await FirebaseFirestore.instance
