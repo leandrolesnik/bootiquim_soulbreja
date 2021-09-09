@@ -55,6 +55,6 @@ class ProdutoModel {
 
   @override
   String toString() {
-    return 'key: $key, ownerKey: $ownerKey, item: $item, descricao: $descricao, quantidade: $quantidade, preco: $preco, promocao: $promocao, categoria: $categoria, volume $volume';
+    return 'key: $key, ownerKey: $ownerKey, item: $item, descricao: $descricao, quantidade: $quantidade, preco: $preco, promocao: $promocao, categoria: $categoria, volume: $volume';
   }
 }
