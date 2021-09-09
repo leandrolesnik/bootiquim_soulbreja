@@ -3,6 +3,7 @@ import 'package:bootquim_soulbreja/models/user_model.dart';
 import 'package:bootquim_soulbreja/pages/cerveja_page.dart';
 import 'package:bootquim_soulbreja/pages/home_page.dart';
 import 'package:bootquim_soulbreja/pages/lista_promocao.dart';
+import 'package:bootquim_soulbreja/pages/login_page.dart';
 import 'package:bootquim_soulbreja/pages/vinho_page.dart';
 import 'package:bootquim_soulbreja/pages/whisky_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,6 +87,14 @@ class DrawerMenu extends StatelessWidget {
               leading: Icon(Icons.list),
               title: Text("Tela 4..."),
               onTap: () {}),
+          IconButton(
+              onPressed: () async {
+              await userController.logout();
+              Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+              icon: Icon(Icons.exit_to_app),
+          ),
         ],
       ),
     );

@@ -49,7 +49,7 @@ class _CartState extends State<Cart> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Total R\$$total",
+                    "Total: R\$$total",
                     style: TextStyle(fontSize: 16),
                   ),
                   IconButton(
