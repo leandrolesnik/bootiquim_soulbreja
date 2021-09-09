@@ -58,9 +58,16 @@ class _CartState extends State<Cart> {
                       final carrinho = {'compras': produtosMap};
                       print(produtosMap);
                       print(carrinho);
-                      // FirebaseFirestore.instance
-                      //     .collection("historico")
-                      //     .add(carrinho);
+                      FirebaseFirestore.instance
+                          .collection("historico")
+                          .add(carrinho);
+
+                      // var usuario = FirebaseFirestore.instance
+                      //     .collection('historico')
+                      //     .where('ownerKey',
+                      //         isEqualTo: userController.model.key)
+                      //     // .doc();
+                      // print(usuario);
                     },
                     icon: Icon(
                       Icons.shopping_bag_outlined,
