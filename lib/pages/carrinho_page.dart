@@ -19,7 +19,27 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart'),
+        title: Text('Finalizar'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0, top: 8.0),
+            child: GestureDetector(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Total"),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.shopping_bag_outlined,
+                      size: 36.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: _cart.length,
@@ -29,31 +49,23 @@ class _CartState extends State<Cart> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
             child: Card(
               elevation: 4.0,
-              child: Column(
-                children: [
-                  Container(height: 200, child: Image.memory(item.imagem!)),
-                  Text(item.item),
-                  Text("R\$${item.preco}"),
-                  GestureDetector(
-                    child: Icon(
-                      Icons.remove_circle,
-                      color: Colors.red,
-                    ),
-                    onTap: () {
-                      setState(
-                        () {
-                          _cart.remove(item);
-                        },
-                      );
-                    },
+              child: ListTile(
+                leading: Image.memory(item.imagem!),
+                title: Text(item.item),
+                subtitle: Text("R\$${item.preco}"),
+                trailing: GestureDetector(
+                  child: Icon(
+                    Icons.remove_circle,
+                    color: Colors.red,
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    child: Text("COMPRAR"),
-                  )
-                ],
+                  onTap: () {
+                    setState(
+                      () {
+                        _cart.remove(item);
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           );
