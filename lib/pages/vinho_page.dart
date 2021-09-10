@@ -1,4 +1,3 @@
-import 'package:bootquim_soulbreja/pages/produto_page.dart';
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,15 +85,117 @@ class _VinhoPageState extends State<VinhoPage> {
                 child: Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProdutoPage(
-                            produto: item,
-                          ),
-                        ),
+                      //**** ABRE O DIALOG COM O PRODUTO ****/
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            scrollable: true,
+                            contentPadding: EdgeInsets.all(10),
+                            insetPadding: EdgeInsets.all(10),
+                            elevation: 5,
+                            content: Container(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 20),
+                                child: Expanded(
+                                  child: Container(
+                                    color: Colors.white,
+                                    child: Column(
+                                      children: [
+                                        Image(
+                                            image: MemoryImage(item.imagem!),
+                                            height: 300),
+                                        Text(
+                                          item.item,
+                                          style: TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.w200,
+                                            color: Color(0xff733a19),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              bottom: 30, top: 15),
+                                          child: Text('${item.descricao}',
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                color: Color(0xff733a19),
+                                              )),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              'Quantidade: ${item.quantidade}',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Color(0xffD96A29),
+                                              ),
+                                            ),
+                                            Text(
+                                              'R\$${item.preco}',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Color(0xffD96A29)),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 30),
+                                          child: InkWell(
+                                            onTap: () {
+                                              setState(
+                                                () {
+                                                  _cartList.add(item);
+                                                  Navigator.pop(context, true);
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Color(0xffF2c6A0),
+                                              ),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 10),
+                                              width: 100,
+                                              height: 50,
+                                              child: Text(
+                                                "Comprar",
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Color(0xff733a19),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => ProdutoPage(
+                          //       produto: item,
+                          //     ),
+                          //   ),
+                          // );
+                        },
                       );
+                      //***** AQUI TERMINA O DIALOG *****/
                     },
+                    //******* GRID COM O ITENS ********/
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

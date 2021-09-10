@@ -114,9 +114,10 @@ class _LoginPageState extends State<LoginPage> {
                     "Criar conta",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18),
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ],
