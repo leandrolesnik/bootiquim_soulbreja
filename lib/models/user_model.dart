@@ -14,7 +14,6 @@ class UserModel {
       nome: map['nome'],
       key: map['key'],
       imagem: map['imagem']?.bytes,
-      historico: map['historico'],
     );
   }
 
