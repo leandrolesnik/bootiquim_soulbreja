@@ -1,4 +1,4 @@
-import 'package:bootquim_soulbreja/pages/produto_page.dart';
+// import 'package:bootquim_soulbreja/pages/produto_page.dart';
 import 'package:bootquim_soulbreja/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -12,6 +12,7 @@ class WhiskyPage extends StatefulWidget {
 
 class _WhiskyPageState extends State<WhiskyPage> {
   List<ProdutoModel> _cartList = <ProdutoModel>[];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
