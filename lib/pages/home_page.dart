@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: CarouselSlider(
                       options: CarouselOptions(
-                        height: 200,
+                        height: MediaQuery.of(context).size.height / 2.2,
                         autoPlay: true,
                       ),
                       items: imagesList
@@ -107,8 +107,9 @@ class _HomePageState extends State<HomePage> {
                               child: Center(
                                 child: Image.network(
                                   item,
-                                  fit: BoxFit.cover,
-                                  height: 200,
+                                  fit: BoxFit.fitHeight,
+                                  height:
+                                      MediaQuery.of(context).size.height / 2.2,
                                 ),
                               ),
                             ),
@@ -123,7 +124,10 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                         margin: EdgeInsets.fromLTRB(0, 50, 0, 20),
-                        child: Text("Categorias", style: TextStyle(fontSize: 25),)),
+                        child: Text(
+                          "Categorias",
+                          style: TextStyle(fontSize: 25),
+                        )),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -135,9 +139,11 @@ class _HomePageState extends State<HomePage> {
                                 '../../assets/images/categorias/cervejas.jpg',
                                 width: 80,
                               ),
-                               onTap: () {
-                                Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => CervejaPage()));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => CervejaPage()));
                               },
                             ),
                           ),
@@ -152,8 +158,10 @@ class _HomePageState extends State<HomePage> {
                                 width: 80,
                               ),
                               onTap: () {
-                                Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => VinhoPage()));
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => VinhoPage()));
                               },
                             ),
                           ),
@@ -168,8 +176,10 @@ class _HomePageState extends State<HomePage> {
                                 width: 80,
                               ),
                               onTap: () {
-                                Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => WhiskyPage()));
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => WhiskyPage()));
                               },
                             ),
                           ),
