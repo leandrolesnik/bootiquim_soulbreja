@@ -69,7 +69,7 @@ class _ListaPromocaoState extends State<ListaPromocao> {
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: FirebaseFirestore.instance
             .collection('produtos')
-            .where('categoria', isEqualTo: "Teste")
+            .where('promocao', isEqualTo: true)
             .get(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -116,14 +116,14 @@ class _ListaPromocaoState extends State<ListaPromocao> {
                                     Text(
                                       item.item,
                                       style: TextStyle(
-                                          fontSize: 32,
+                                          fontSize: 28,
                                           fontWeight: FontWeight.bold,
                                           color: Color(0xff733a19)),
                                     ),
                                     Text(
                                       item.volume,
                                       style: TextStyle(
-                                          fontSize: 24,
+                                          fontSize: 22,
                                           color: Color(0xffD96A29)),
                                     ),
                                   ],

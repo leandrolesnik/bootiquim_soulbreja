@@ -31,7 +31,7 @@ class _CartState extends State<Cart> {
       return (soma);
     }
 
-    String total = totalPreco(_cart).toString();
+    String total = totalPreco(_cart).toStringAsFixed(2);
 
     print("_____");
     print(_cart);
@@ -58,8 +58,11 @@ class _CartState extends State<Cart> {
                       FirebaseFirestore.instance
                           .collection("historico")
                           .add(carrinho);
+                      print("===========");
                       print(produtosMap);
+                      print("===========");
                       print(carrinho);
+                      print("===========");
 
                       FirebaseFirestore.instance
                           .collection("historico")
