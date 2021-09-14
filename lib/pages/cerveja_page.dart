@@ -10,6 +10,7 @@ class CervejaPage extends StatefulWidget {
   _CervejaPageState createState() => _CervejaPageState();
 }
 
+
 class _CervejaPageState extends State<CervejaPage> {
   List<ProdutoModel> _cartList = <ProdutoModel>[];
   @override

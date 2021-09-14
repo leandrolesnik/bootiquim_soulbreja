@@ -49,7 +49,7 @@ class DrawerMenu extends StatelessWidget {
           //   foregroundImage: MemoryImage(userController.model.imagem!),
 
           ListTile(
-              leading: Icon(Icons.person),
+              leading: Icon(Icons.home),
               title: Text(" Home"),
               onTap: () {
                 Navigator.push(context,
@@ -63,30 +63,27 @@ class DrawerMenu extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => ListaPromocao()));
               }),
           ListTile(
-              leading: Icon(Icons.print),
+              leading: Icon(Icons.water),
               title: Text("Cerveja"),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CervejaPage()));
               }),
           ListTile(
-              leading: Icon(Icons.print),
+              leading: Icon(Icons.water),
               title: Text("Vinho"),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => VinhoPage()));
               }),
           ListTile(
-              leading: Icon(Icons.print),
+              leading: Icon(Icons.water),
               title: Text("Whisky"),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => WhiskyPage()));
               }),
-          ListTile(
-              leading: Icon(Icons.list),
-              title: Text("Tela 4..."),
-              onTap: () {}),
+         
           IconButton(
               onPressed: () async {
               await userController.logout();
