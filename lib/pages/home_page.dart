@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                       items: imagesList
                           .map(
                             (item) => Container(
+                              padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Center(
                                 child: Image.network(
                                   item,
